@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import heroImg from './assets/coffee_bean_logo_all_the_beans.svg'
 import './App.css'
 
 function App() {
@@ -12,56 +12,40 @@ function App() {
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Get started</h1>
+          <h1>Your world of coffee</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Welcome to <b>All The Beans</b> — your ultimate destination for the finest coffee 
+            beans from every corner of the globe. Whether you're a seasoned espresso 
+            enthusiast or just beginning your coffee journey, we've curated an 
+            exceptional collection of single-origin gems, expertly blended roasts, and 
+            rare small-batch varieties to satisfy every palate. From Ethiopia to Colombia, every 
+            bag we stock tells a story of passion, craft, and quality. Browse our full range, 
+            discover tasting notes, get expert brewing advice, and have your perfect 
+            beans delivered straight to your door — because great coffee starts with 
+            great beans, and we have all of them just for you!
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
       </section>
-
-      <div className="ticks"></div>
 
       <section id="next-steps">
         <div id="docs">
           <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
+            <use href="/icons.svg#coffee-jar-icon"></use>
           </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <h2>Shop Floor</h2>
+          <p>The best place to find the finest coffee beans from around the world</p>
+          <h2>ADD ITEMS HERE</h2>
         </div>
         <div id="social">
           <svg className="icon" role="presentation" aria-hidden="true">
             <use href="/icons.svg#social-icon"></use>
           </svg>
           <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
+          <p>Join the "All the beans" community</p>
           <ul>
-            <li>
+            <li >
               <a href="https://github.com/vitejs/vite" target="_blank">
                 <svg
                   className="button-icon"
@@ -112,8 +96,6 @@ function App() {
           </ul>
         </div>
       </section>
-
-      <div className="ticks"></div>
       <section id="spacer"></section>
     </>
   )
