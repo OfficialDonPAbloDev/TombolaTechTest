@@ -2,10 +2,28 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/coffee_bean_logo_all_the_beans.svg'
+import BeanItem from './components/BeanItem'
 import './App.css'
+
+const sampleBean = {
+  id: '66a37459771606d916a226ff',
+  index: 3,
+  isBeanOfTheDay: true,
+  cost: 17.69,
+  currency: 'GBP',
+  imageUrl: 'https://images.unsplash.com/photo-1598198192305-46b0805890d3',
+  colour: 'dark roast',
+  name: 'RONBERT',
+  description:
+    'Et deserunt nisi in anim cillum sint voluptate proident. Est occaecat id cupidatat cupidatat ex veniam irure veniam pariatur excepteur duis labore occaecat amet. Culpa adipisicing nisi esse consequat adipisicing anim.',
+  country: 'Brazil',
+}
 
 function App() {
   const [count, setCount] = useState(0)
+  const handleBeanSelect = (bean) => {
+    alert(`${bean.name} clicked!!`)
+  }
 
   return (
     <>
@@ -36,7 +54,7 @@ function App() {
           </svg>
           <h2>Shop Floor</h2>
           <p>The best place to find the finest coffee beans from around the world</p>
-          <h2>ADD ITEMS HERE</h2>
+          <BeanItem bean={sampleBean} onSelect={handleBeanSelect} />
         </div>
         <div id="social">
           <svg className="icon" role="presentation" aria-hidden="true">
