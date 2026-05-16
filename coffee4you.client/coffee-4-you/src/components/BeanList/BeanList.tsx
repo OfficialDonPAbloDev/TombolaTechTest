@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { Bean } from '../models/Bean';
-import { fetchBeans } from '../api/beans';
-import BeanItem from './BeanItem';
+import type { Bean } from '../../models/Bean';
+import { fetchBeans } from '../../api/beans';
+import BeanItem from '../BeanItem/BeanItem';
 import './BeanList.css';
 
 const PAGE_SIZE = 6;

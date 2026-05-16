@@ -169,6 +169,14 @@
   }
 }
 
+#basket {
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    padding: 24px 20px;
+  }
+}
+
 #social ul {
   list-style: none;
   padding: 0;

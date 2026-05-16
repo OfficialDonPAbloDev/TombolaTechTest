@@ -1,4 +1,4 @@
-import type { Bean } from '../models/Bean';
+import type { Bean } from '../../models/Bean';
 import './BeanItem.css';
 
 interface BeanItemProps {

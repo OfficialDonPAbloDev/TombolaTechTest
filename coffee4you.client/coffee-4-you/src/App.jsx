@@ -2,13 +2,34 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/coffee_bean_logo_all_the_beans.svg'
-import BeanList from './components/BeanList'
+import BeanList from './components/BeanList/BeanList'
+import BeanDetail from './components/BeanDetail/BeanDetail'
+import ShoppingBasket from './components/ShoppingBasket/ShoppingBasket'
+import { useBasket } from './hooks/useBasket'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedBean, setSelectedBean] = useState(null)
+  const basket = useBasket()
+
   const handleBeanSelect = (bean) => {
-    alert(`${bean.name} clicked!!`)
+    setSelectedBean(bean)
+  }
+
+  const handleCloseDetail = () => {
+    setSelectedBean(null)
+  }
+
+  const handleAddToCart = (bean, quantity) => {
+    basket.addItem(bean, quantity)
+  }
+
+  const handleCheckout = () => {
+    const formatted = new Intl.NumberFormat(undefined, {
+      style: 'currency',
+      currency: basket.currency,
+    }).format(basket.total)
+    alert(`Checkout: ${basket.itemCount} items, total ${formatted}`)
   }
 
   return (
@@ -100,6 +121,25 @@ function App() {
           </ul>
         </div>
       </section>
+
+      <section id="basket">
+        <ShoppingBasket
+          items={basket.items}
+          total={basket.total}
+          itemCount={basket.itemCount}
+          currency={basket.currency}
+          onUpdateQuantity={basket.updateQuantity}
+          onRemoveItem={basket.removeItem}
+          onCheckout={handleCheckout}
+        />
+      </section>
+
+      <BeanDetail
+        bean={selectedBean}
+        onClose={handleCloseDetail}
+        onAddToCart={handleAddToCart}
+      />
+
       <section id="spacer"></section>
     </>
   )
