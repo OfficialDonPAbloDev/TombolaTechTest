@@ -37,6 +37,13 @@
   }
 }
 
+.bean-list__empty {
+  padding: 24px;
+  color: var(--text);
+  font-size: 15px;
+  text-align: center;
+}
+
 .bean-list__error {
   display: flex;
   flex-direction: column;

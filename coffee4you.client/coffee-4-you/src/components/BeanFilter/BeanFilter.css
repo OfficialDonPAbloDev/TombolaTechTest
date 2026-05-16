@@ -1,0 +1,68 @@
+.bean-filter {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.bean-filter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.bean-filter__field--grow {
+  flex: 1 1 240px;
+}
+
+.bean-filter__label {
+  font-weight: 500;
+}
+
+.bean-filter__select,
+.bean-filter__input {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-h);
+  min-width: 180px;
+  box-sizing: border-box;
+}
+
+.bean-filter__select:focus,
+.bean-filter__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.bean-filter__clear {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.bean-filter__clear:hover:not(:disabled) {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.bean-filter__clear:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

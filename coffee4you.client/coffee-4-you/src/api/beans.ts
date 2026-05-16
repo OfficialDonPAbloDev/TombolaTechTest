@@ -1,4 +1,8 @@
 import type { Bean, BeanColour } from '../models/Bean';
+import type { BeanFilters } from '../models/BeanFilters';
+
+const MIN_NAME_QUERY = 2;
+const EMPTY_FILTERS: BeanFilters = { country: '', name: '' };
 
 interface RawBean {
   _id: string;
@@ -73,20 +77,39 @@ function loadAll(): Promise<Bean[]> {
   return cache;
 }
 
+function applyFilters(beans: Bean[], filters: BeanFilters): Bean[] {
+  const nameQuery = filters.name.trim().toLowerCase();
+  const applyName = nameQuery.length >= MIN_NAME_QUERY;
+  const applyCountry = filters.country.length > 0;
+  if (!applyName && !applyCountry) return beans;
+  return beans.filter((bean) => {
+    if (applyCountry && bean.country !== filters.country) return false;
+    if (applyName && !bean.name.toLowerCase().includes(nameQuery)) return false;
+    return true;
+  });
+}
+
 export async function fetchBeans(
   page: number,
   pageSize: number,
+  filters: BeanFilters = EMPTY_FILTERS,
 ): Promise<BeansPage> {
   await new Promise((r) => setTimeout(r, 400));
 
   const all = await loadAll();
+  const filtered = applyFilters(all, filters);
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
   return {
-    items: all.slice(start, end),
-    total: all.length,
+    items: filtered.slice(start, end),
+    total: filtered.length,
     page,
     pageSize,
-    hasMore: end < all.length,
+    hasMore: end < filtered.length,
   };
+}
+
+export async function fetchCountries(): Promise<string[]> {
+  const all = await loadAll();
+  return Array.from(new Set(all.map((b) => b.country))).sort();
 }
