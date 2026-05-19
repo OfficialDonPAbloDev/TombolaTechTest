@@ -93,7 +93,7 @@ public static class JsonSeeder
         await db.SaveChangesAsync(ct);
     }
 
-    private static (decimal cost, string currency) ParseCost(string? raw)
+    internal static (decimal cost, string currency) ParseCost(string? raw)
     {
         if (string.IsNullOrWhiteSpace(raw))
         {

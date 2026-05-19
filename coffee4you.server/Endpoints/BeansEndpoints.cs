@@ -83,7 +83,10 @@ public static class BeansEndpoints
 
         if (trimmedQuery.Length >= MINIMUM_BEAN_NAME_SEARCH_LENGTH)
         {
-            query = query.Where(b => b.Name.Contains(trimmedQuery));
+            // Normalise case explicitly so the filter is provider-independent:
+            // SQLite Contains is case-sensitive; SQL Server's default collation is not.
+            var loweredQuery = trimmedQuery.ToLower();
+            query = query.Where(b => b.Name.ToLower().Contains(loweredQuery));
         }
 
         var total = await query.CountAsync(cancelToken);

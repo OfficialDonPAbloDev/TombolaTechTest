@@ -27,8 +27,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (!app.Environment.IsEnvironment("Testing"))
 {
+    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
     db.Database.Migrate();
@@ -52,3 +53,6 @@ app.MapColoursEndpoints();
 app.MapGet("/", () => "Coffee4You server running");
 
 app.Run();
+
+// Exposes Program so WebApplicationFactory<Program> in the test project can spin up the host.
+public partial class Program { }
