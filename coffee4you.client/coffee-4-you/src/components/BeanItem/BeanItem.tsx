@@ -24,7 +24,7 @@ function BeanItem({ bean, onSelect }: BeanItemProps) {
   return (
     <button
       type="button"
-      className="bean-item"
+      className={`bean-item${bean.isBeanOfTheDay ? ' bean-item--botd' : ''}`}
       onClick={() => onSelect(bean)}
     >
       {bean.isBeanOfTheDay && (
@@ -33,7 +33,8 @@ function BeanItem({ bean, onSelect }: BeanItemProps) {
           title="Bean of the Day"
           aria-label="Bean of the Day"
         >
-          ★
+          <span className="bean-item__botd-star" aria-hidden="true">★</span>
+          Bean of the Day
         </span>
       )}
       <img
