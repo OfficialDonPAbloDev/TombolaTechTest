@@ -66,6 +66,9 @@ public class AppDbContext : DbContext
             b.HasIndex(x => x.SelectedFor).IsUnique();
         });
 
+
+        // Auto-apply a global query filter (e => !e.IsDeleted) to every ISoftDelete entity,
+        // so soft-deleted rows are hidden from standard queries. Use IgnoreQueryFilters() to include them.
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             if (!typeof(ISoftDelete).IsAssignableFrom(entityType.ClrType))
